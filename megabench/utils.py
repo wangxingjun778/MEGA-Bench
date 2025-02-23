@@ -32,7 +32,7 @@ def prepare_megabench_data(dataset_name, dataset_subset_name):
     use_modelscope: bool = os.environ.get("MEGABENCH_USE_MODELSCOPE", "false").lower() == "true"
     if use_modelscope:
         from modelscope import MsDataset
-
+    
     if "single_image" in dataset_subset_name:
         if use_modelscope:
             core_data = MsDataset.load(dataset_name, "core_single_image")
@@ -49,7 +49,7 @@ def prepare_megabench_data(dataset_name, dataset_subset_name):
             open_data = load_dataset(dataset_name, "open")
     core_test_samples = list(core_data["test"])
 
-    print(f"Got {len(core_test_samples)} samples from core dataset")
+    print(f"Got {len(core_test_samples)} samples from core dataset")    
 
     organized_core_dataset = organize_hf_dataset(core_test_samples)
     open_test_samples = list(open_data["test"])
