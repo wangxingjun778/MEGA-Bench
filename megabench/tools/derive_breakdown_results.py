@@ -46,9 +46,11 @@ def calculate_model_summary(task_results_with_meta):
     
     # Calculate overall score (weighted average based on number of tasks)
     # ex core_stats: {'num_eval_tasks': 440, 'num_eval_samples': 6531, 'macro_mean_score': 0.2466618622594841}
-    print(f'>>core_stats: {core_stats}')
-    print(f'>>open_stats: {open_stats}')
-    total_tasks = (core_stats["num_eval_tasks"] + open_stats["num_eval_tasks"])
+    print(f">>core_stats: {core_stats}, >>open_stats: {open_stats}")
+
+    core_num_eval_tasks = core_stats.get('num_eval_tasks', 0) if core_stats else 0
+    open_num_eval_tasks = open_stats.get('num_eval_tasks', 0) if open_stats else 0
+    total_tasks = (core_num_eval_tasks + open_num_eval_tasks)
     overall_score = (
         (core_stats["macro_mean_score"] * core_stats["num_eval_tasks"] + 
          open_stats["macro_mean_score"] * open_stats["num_eval_tasks"]) / total_tasks
