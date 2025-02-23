@@ -125,7 +125,12 @@ def str_to_coords(coord_list, dim=2) -> list:
     try:
         # TODO: ONLY FOR TEST
         print(f">>coord_list: {coord_list}, >>type: {type(coord_list)}")
-        coords = ast.literal_eval(coord_list)
+        formatted_coord_list: str = coord_list.replace('] [', '], [')
+        if formatted_coord_list == coord_list:
+            coords = ast.literal_eval(coord_list)
+        else:
+            formatted_coord_list = '[' + formatted_coord_list + ']'
+            coords = ast.literal_eval(formatted_coord_list)
     except SyntaxError:
         try:
             coords = json.loads(coord_list)

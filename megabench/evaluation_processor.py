@@ -510,14 +510,9 @@ class EvaluationProcessor:
             query["scores"]["field"][field] = score
             query["scores"]["info"][field] = eval_info
         else:
-            # TODO: ONLY FOR TEST
-            print(f'>>field: {field}, >>response_obj_get_field: {response_obj.get(field)}')
-            print(f">>correct_value: {correct_value}")
             query["scores"]["field"][field] = metric.match(
                 response_obj.get(field), correct_value
             )
-            print(f'>>query_score_field: {query["scores"]["field"][field]}')
-
         if self.sanity_check_eval and query["scores"]["field"][field] != 1:
             if (
                 metric == MetricType.POSITIVE_INT_MATCH
