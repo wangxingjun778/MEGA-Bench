@@ -123,6 +123,8 @@ def str_to_coords(coord_list, dim=2) -> list:
     if not isinstance(coord_list, str):
         return []
     try:
+        # TODO: ONLY FOR TEST
+        print(f">>coord_list: {coord_list}, >>type: {type(coord_list)}")
         coords = ast.literal_eval(coord_list)
     except SyntaxError:
         try:
