@@ -244,6 +244,7 @@ megabench/results/**/temp.json
 !/megabench/results/**/data_with_scores.json
 !/megabench/results/**/analysis
 megabench/results
+megabench/nohup*
 
 *lock
 
