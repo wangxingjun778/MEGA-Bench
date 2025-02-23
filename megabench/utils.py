@@ -1,3 +1,4 @@
+import os
 import importlib
 from mimetypes import guess_type
 from datasets import load_dataset
@@ -28,13 +29,28 @@ def prepare_megabench_data(dataset_name, dataset_subset_name):
             subset_dataset: The organized data of the specified subset
             all_dataset: The organized data of all tasks, used for evaluation
     """
+    use_modelscope: bool = os.environ.get("MEGABENCH_USE_MODELSCOPE", "false").lower() == "true"
+    if use_modelscope:
+        from modelscope import MsDataset
+    
     if "single_image" in dataset_subset_name:
-        core_data = load_dataset(dataset_name, "core_single_image")
-        open_data = load_dataset(dataset_name, "open_single_image")
+        if use_modelscope:
+            core_data = MsDataset.load(dataset_name, "core_single_image")
+            open_data = MsDataset.load(dataset_name, "open_single_image")
+        else:
+            core_data = load_dataset(dataset_name, "core_single_image")
+            open_data = load_dataset(dataset_name, "open_single_image")
     else:
-        core_data = load_dataset(dataset_name, "core")
-        open_data = load_dataset(dataset_name, "open")
+        if use_modelscope:
+            core_data = MsDataset.load(dataset_name, "core")
+            open_data = MsDataset.load(dataset_name, "open")
+        else:
+            core_data = load_dataset(dataset_name, "core")
+            open_data = load_dataset(dataset_name, "open")
     core_test_samples = list(core_data["test"])
+
+    print(f"Got {len(core_test_samples)} samples from core dataset")    
+
     organized_core_dataset = organize_hf_dataset(core_test_samples)
     open_test_samples = list(open_data["test"])
     organized_open_dataset = organize_hf_dataset(open_test_samples)

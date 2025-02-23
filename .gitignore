@@ -194,7 +194,7 @@ cython_debug/
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
-#.idea/
+.idea/
 
 ### Python Patch ###
 # Poetry local configuration file - https://python-poetry.org/docs/configuration/#local-configuration
@@ -229,6 +229,7 @@ pyrightconfig.json
 
 
 data
+raw_data
 local/
 
 # The evaluation artifacts should only go in the results folder.
@@ -242,6 +243,7 @@ megabench/results/**/temp.json
 !/megabench/results/**/all_query_responses.json
 !/megabench/results/**/data_with_scores.json
 !/megabench/results/**/analysis
+megabench/results
 
 *lock
 

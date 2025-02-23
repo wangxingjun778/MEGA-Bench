@@ -168,6 +168,22 @@ class ModelType(ModelTypeContainer, Enum):
         ModelClass.Qwen2VL,
         MaxImagesPerApiCallConfig(max_num_image=16, total_demo_video_frames=2),
     )
+    # Qwen/Qwen2.5-VL-3B-Instruct
+    QWEN2_5_VL_3B = (
+        "QWEN2_5_VL_3B",
+        "Qwen/Qwen2.5-VL-3B-Instruct",
+        "",
+        ModelClass.Qwen2VL,
+        MaxImagesPerApiCallConfig(max_num_image=16, total_demo_video_frames=2),
+    )
+    # Qwen/Qwen2.5-VL-7B-Instruct
+    QWEN2_5_VL_7B = (
+        "QWEN2_5_VL_7B",
+        "Qwen/Qwen2.5-VL-7B-Instruct",
+        "",
+        ModelClass.Qwen2VL,
+        MaxImagesPerApiCallConfig(max_num_image=16, total_demo_video_frames=2),
+    )
     QVQ_72B_PREVIEW = (
         "QVQ_72B_Preview",
         "Qwen/QVQ-72B-Preview",
